@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
+import datetime as dt
+import glob
+import json
 import os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 CINZEL = open(os.path.join(HERE, 'font_cinzel.b64')).read().strip()
 EBG    = open(os.path.join(HERE, 'font_ebg.b64')).read().strip()
+STATS  = json.load(open(os.path.join(HERE, 'stats.json')))   # собирает stats.py
 
 BG     = '#0B0B0E'
 LINE   = '#232329'
@@ -178,20 +182,193 @@ def stack():
 </svg>'''
 
 
+def esc(s):
+    return (str(s).replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
+            .replace('"', '&quot;').replace("'", '&#39;'))
+
+def fmt(n):
+    return f'{n:,}'.replace(',', ' ')
+
+MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+
+def mon(d):
+    d = dt.date.fromisoformat(d)
+    return f'{MONTHS[d.month - 1]} {d.day}'
+
+def panel_title(title, y=42):
+    tw = len(title) * 26
+    l1, l2 = 440 - tw // 2 - 62, 440 - tw // 2 - 8
+    r1, r2 = 440 + tw // 2 + 8, 440 + tw // 2 + 62
+    return (f'<line x1="{l1}" y1="{y-6}" x2="{l2-8}" y2="{y-6}" stroke="{LINE2}" stroke-width="1"/>'
+            f'<line x1="{r1+8}" y1="{y-6}" x2="{r2}" y2="{y-6}" stroke="{LINE2}" stroke-width="1"/>'
+            f'{diamond(l2, y-6, 2.6)}{diamond(r1, y-6, 2.6)}'
+            f'<text x="440" y="{y}" text-anchor="middle" class="cz" font-size="17" letter-spacing="9" fill="{IVORY}">{title}</text>')
+
+def card_title(title):
+    return f'<text x="28" y="40" class="cz" font-size="13" letter-spacing="5" fill="{IVORY}">{title}</text>'
+
+
+def currently():
+    r, c = STATS['repos'], STATS['contributions']
+    java = r['by_primary'].get('Java', 0)
+    year = dt.date.today().year
+    lines = [
+        ('Minecraft', f'Fabric and NeoForge mods, Paper plugins for private servers · {java} Java repositories'),
+        ('Backends', 'Go services and Telegram bots — subscriptions, payments, admin panels'),
+        ('Agents', 'MCP servers and agent tooling — hosting, DNS, panel and game-API integrations'),
+        ('Web', 'React / TypeScript dashboards and landing pages'),
+        ('Ops', 'Docker, systemd, fleet automation over SSH'),
+    ]
+    body = ''
+    for i, (k, v) in enumerate(lines):
+        y = 104 + i * 21
+        body += diamond(52, y - 4.5, 2.4, RED, '.75')
+        body += (f'<text x="66" y="{y}" class="sans" font-size="13" fill="{GRAY}">'
+                 f'<tspan fill="{IVORY}">{esc(k)}</tspan> — {esc(v)}</text>\n')
+    sub = (f"{r['private']} PRIVATE REPOSITORIES  ·  {fmt(c['this_year'])} CONTRIBUTIONS IN {year}"
+           f"  ·  UPDATED {STATS['refreshed']}")
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="880" height="214" viewBox="0 0 880 214">
+{style()}
+<rect x=".5" y=".5" width="879" height="213" rx="6" fill="{BG}" stroke="{LINE}"/>
+{corners(880, 214, 11, 9)}
+{panel_title('CURRENTLY')}
+<text x="440" y="70" text-anchor="middle" class="mono" font-size="10.5" letter-spacing="1.5" fill="{DIM}">{esc(sub)}</text>
+{body}
+</svg>'''
+
+
+def overview():
+    r, c = STATS['repos'], STATS['contributions']
+    rows = [
+        ('Repositories', f"{r['total']}", f"{r['private']} private"),
+        ('Commits', fmt(STATS['commits']), 'default branches'),
+        ('Contributions', fmt(c['last_year']), 'last 12 months'),
+        ('Stars', fmt(STATS['stars']), 'public repos'),
+    ]
+    body = ''
+    for i, (k, v, note) in enumerate(rows):
+        y = 78 + i * 31
+        body += f'<text x="28" y="{y}" class="sans" font-size="13" fill="{GRAY}">{esc(k)}</text>\n'
+        body += f'<line x1="130" y1="{y-4}" x2="{404 - len(v) * 9 - len(note) * 6.6 - (22 if note else 8):.1f}" y2="{y-4}" stroke="{LINE}" stroke-width="1" stroke-dasharray="1 4"/>\n'
+        if note:
+            body += f'<text x="{404 - len(v) * 9 - 10}" y="{y}" text-anchor="end" class="mono" font-size="10.5" fill="{DIM}">{esc(note)}</text>\n'
+        body += f'<text x="404" y="{y}" text-anchor="end" class="mono" font-weight="700" font-size="15" fill="{IVORY}">{esc(v)}</text>\n'
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="432" height="200" viewBox="0 0 432 200">
+{style()}
+<rect x=".5" y=".5" width="431" height="199" rx="6" fill="{BG}" stroke="{LINE}"/>
+{corners(432, 200, 11, 9)}
+{card_title('OVERVIEW')}
+{body}
+</svg>'''
+
+
+def langs():
+    L = STATS['languages']
+    x, w = 28, 376
+    bar = ''
+    ops = ['1', '.8', '.62', '.48', '.36', '.26', '.16']
+    for i, l in enumerate(L):
+        seg = w * l['pct'] / 100
+        bar += f'<rect x="{x:.1f}" y="56" width="{max(seg - 1.5, 0):.1f}" height="7" fill="{RED}" fill-opacity="{ops[min(i, 6)]}"/>\n'
+        x += seg
+    lst = ''
+    for i, l in enumerate(L):
+        col, row = i % 2, i // 2
+        lx, ly = 28 + col * 190, 96 + row * 26
+        lst += f'<rect x="{lx}" y="{ly - 8}" width="7" height="7" fill="{RED}" fill-opacity="{ops[min(i, 6)]}"/>\n'
+        lst += f'<text x="{lx + 15}" y="{ly}" class="mono" font-size="11.5" fill="#A9AEB8">{esc(l["name"])}</text>\n'
+        lst += f'<text x="{lx + 168}" y="{ly}" text-anchor="end" class="mono" font-size="11.5" fill="{DIM}">{l["pct"]:.1f}%</text>\n'
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="432" height="200" viewBox="0 0 432 200">
+{style()}
+<rect x=".5" y=".5" width="431" height="199" rx="6" fill="{BG}" stroke="{LINE}"/>
+{corners(432, 200, 11, 9)}
+{card_title('LANGUAGES')}
+<text x="404" y="40" text-anchor="end" class="mono" font-size="10" letter-spacing="1" fill="{DIM}">BY CODE SIZE</text>
+{bar}{lst}
+</svg>'''
+
+
+def activity():
+    c = STATS['contributions']
+    weeks = STATS['calendar']
+    cell, pitch = 11, 14
+    x0, y0 = 90, 96
+    counts = sorted(d['count'] for w in weeks for d in w if d['count'] > 0)
+    def q(p):
+        return counts[min(int(len(counts) * p), len(counts) - 1)] if counts else 0
+    t1, t2, t3 = q(.25), q(.5), q(.75)
+    def level(n):
+        if n <= 0: return None
+        if n <= t1: return '.28'
+        if n <= t2: return '.5'
+        if n <= t3: return '.75'
+        return '1'
+    cells, months, prev = '', '', None
+    for wi, w in enumerate(weeks):
+        x = x0 + wi * pitch
+        m = dt.date.fromisoformat(w[-1]['date']).month   # неделя, в которую попало 1-е число
+        if m != prev:
+            months += f'<text x="{x}" y="{y0 - 9}" class="mono" font-size="9.5" fill="{DIM}">{MONTHS[m - 1]}</text>\n'
+        prev = m
+        for d in w:
+            y = y0 + d['weekday'] * pitch
+            op = level(d['count'])
+            if op is None:
+                cells += f'<rect x="{x}" y="{y}" width="{cell}" height="{cell}" rx="2" fill="#15151A" stroke="{LINE}" stroke-width=".8"/>\n'
+            else:
+                cells += f'<rect x="{x}" y="{y}" width="{cell}" height="{cell}" rx="2" fill="{RED}" fill-opacity="{op}"/>\n'
+    wd = ''.join(f'<text x="{x0 - 8}" y="{y0 + i * pitch + 9}" text-anchor="end" class="mono" font-size="9" fill="{DIM}">{n}</text>'
+                 for i, n in ((1, 'Mon'), (3, 'Wed'), (5, 'Fri')))
+    legend = f'<text x="{x0 + 53 * pitch - 70}" y="{y0 + 7 * pitch + 14}" text-anchor="end" class="mono" font-size="9" fill="{DIM}">less</text>'
+    for i, op in enumerate([None, '.28', '.5', '.75', '1']):
+        lx = x0 + 53 * pitch - 62 + i * 13
+        legend += (f'<rect x="{lx}" y="{y0 + 7 * pitch + 6}" width="9" height="9" rx="2" '
+                   + (f'fill="#15151A" stroke="{LINE}" stroke-width=".8"/>' if op is None else f'fill="{RED}" fill-opacity="{op}"/>'))
+    legend += f'<text x="{x0 + 53 * pitch + 10}" y="{y0 + 7 * pitch + 14}" class="mono" font-size="9" fill="{DIM}">more</text>'
+    b = c['longest_range']
+    items = [
+        (fmt(c['last_year']), 'contributions'),
+        (f"{c['current_streak']} d", 'current streak'),
+        (f"{c['longest_streak']} d", f'longest streak · {mon(b[0])} – {mon(b[1])}' if b[0] else 'longest streak'),
+    ]
+    stats_y = y0 + 7 * pitch + 46
+    xs = [200, 440, 680]
+    foot = ''
+    for (v, k), cx in zip(items, xs):
+        foot += f'<text x="{cx}" y="{stats_y}" text-anchor="middle" class="mono" font-weight="700" font-size="15" fill="{IVORY}">{esc(v)}</text>\n'
+        foot += f'<text x="{cx}" y="{stats_y + 17}" text-anchor="middle" class="sans" font-size="11.5" fill="{GRAY}">{esc(k)}</text>\n'
+    foot += diamond(320, stats_y + 3, 2.4, RED, '.75') + diamond(560, stats_y + 3, 2.4, RED, '.75')
+    H = stats_y + 40
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="880" height="{H}" viewBox="0 0 880 {H}">
+{style()}
+<rect x=".5" y=".5" width="879" height="{H - 1}" rx="6" fill="{BG}" stroke="{LINE}"/>
+{corners(880, H, 11, 9)}
+{panel_title('ACTIVITY')}
+<text x="440" y="68" text-anchor="middle" class="mono" font-size="10.5" letter-spacing="1.5" fill="{DIM}">LAST 12 MONTHS  ·  INCLUDING PRIVATE REPOSITORIES</text>
+{months}{wd}{cells}{legend}{foot}
+</svg>'''
+
+
+PUB_STARS = {r['name']: r['stars'] for r in STATS['public_repos']}
+
+
 OUT = {
     'header.svg': header(),
     'sign-projects.svg': sign('PROJECTS'),
     'sign-stats.svg': sign('STATISTICS'),
     'stack.svg': stack(),
-    'card-codex.svg': card('ai-web-design-codex', '60 cross-linked guides on web design —', 'for humans and AI agents', 'MARKDOWN', 'I', stars=4),
-    'card-yandexrpc.svg': card('YandexRPC', 'Discord Rich Presence for Yandex Music —', 'native Windows tray application', 'C# / .NET', 'II', stars=1),
-    'card-damage.svg': card('damage-indicator', 'Floating damage numbers above hit', 'entities — NeoForge 1.21 mod', 'JAVA', 'III'),
-    'card-adaptivejump.svg': card('adaptivejump-neoforge', 'Instant jump rebound on landing —', 'removes the post-jump cooldown', 'JAVA', 'IV'),
-    'card-attack.svg': card('Attack-indicator', 'Configurable floating damage indicators', 'for Paper servers', 'JAVA', 'V'),
+    'card-codex.svg': card('ai-web-design-codex', '60 cross-linked guides on web design —', 'for humans and AI agents', 'MARKDOWN', 'I', stars=PUB_STARS.get('ai-web-design-codex', 0)),
+    'card-yandexrpc.svg': card('YandexRPC', 'Discord Rich Presence for Yandex Music —', 'native Windows tray application', 'C# / .NET', 'II', stars=PUB_STARS.get('YandexRPC', 0)),
+    'card-damage.svg': card('damage-indicator', 'Floating damage numbers above hit', 'entities — NeoForge 1.21 mod', 'JAVA', 'III', stars=PUB_STARS.get('damage-indicator', 0)),
+    'card-adaptivejump.svg': card('adaptivejump-neoforge', 'Instant jump rebound on landing —', 'removes the post-jump cooldown', 'JAVA', 'IV', stars=PUB_STARS.get('adaptivejump-neoforge', 0)),
+    'card-attack.svg': card('Attack-indicator', 'Configurable floating damage indicators', 'for Paper servers', 'JAVA', 'V', stars=PUB_STARS.get('Attack-indicator', 0)),
     'card-more.svg': card_more(),
+    'currently.svg': currently(),
+    'overview.svg': overview(),
+    'langs.svg': langs(),
+    'activity.svg': activity(),
 }
 
-import glob
 for old in glob.glob(os.path.join(HERE, '*.svg')):
     os.remove(old)
 for fname, svg in OUT.items():

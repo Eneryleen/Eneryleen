@@ -1,5 +1,7 @@
 <img src="assets/header.svg" width="100%" alt="ENERYLEEN"/>
 
+<img src="assets/currently.svg" width="100%" alt="Currently: Minecraft mods and plugins, Go services and Telegram bots, MCP servers and agent tooling, React/TypeScript dashboards, ops automation"/>
+
 <img src="assets/sign-projects.svg" width="100%" alt="Projects"/>
 
 <p align="center">
@@ -16,13 +18,11 @@
 <img src="assets/sign-stats.svg" width="100%" alt="Statistics"/>
 
 <p align="center">
-  <img src="https://readme-stats-eta.vercel.app/api?username=Eneryleen&show_icons=true&include_all_commits=true&count_private=true&bg_color=0B0B0E&title_color=DBD7CE&icon_color=B0413E&text_color=8A8F98&ring_color=B0413E&border_color=232329&border_radius=6" alt="GitHub stats"/>
-  <img src="https://readme-stats-eta.vercel.app/api/top-langs/?username=Eneryleen&layout=compact&langs_count=8&bg_color=0B0B0E&title_color=DBD7CE&text_color=8A8F98&border_color=232329&border_radius=6" alt="Most used languages"/>
+  <img src="assets/overview.svg" width="49%" alt="Overview: repositories, commits, contributions and public stars, private repositories included"/>
+  <img src="assets/langs.svg" width="49%" alt="Languages by code size, private repositories included"/>
 </p>
 
-<p align="center">
-  <img src="https://streak-stats.demolab.com?user=Eneryleen&background=0B0B0E&ring=B0413E&fire=B0413E&currStreakLabel=DBD7CE&currStreakNum=DBD7CE&sideNums=A9AEB8&sideLabels=8A8F98&dates=55585F&border=232329&border_radius=6" alt="Contribution streak"/>
-</p>
+<img src="assets/activity.svg" width="100%" alt="Contribution activity over the last 12 months, including private repositories"/>
 
 <p align="center">
   <img src="https://komarev.com/ghpvc/?username=Eneryleen&label=visits&color=2B2B31&style=flat-square" alt="profile visits"/>
