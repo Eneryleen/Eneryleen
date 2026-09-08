@@ -38,8 +38,8 @@ for step in assets/stats.py assets/build.py; do
     notify "$step failed: $(printf '%s' "$out" | tail -c 400)"
     exit 1
   fi
+  printf '%s\n' "$out" | tail -n 1
 done
-printf '%s\n' "$out" | tail -n 1
 git add -A assets
 if git diff --cached --quiet; then echo "no changes"; exit 0; fi
 if [ "${DRY:-}" = 1 ]; then echo "dry run: skipping commit"; git restore --staged assets; exit 0; fi
