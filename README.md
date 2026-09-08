@@ -1,7 +1,5 @@
 <img src="assets/header.svg" width="100%" alt="ENERYLEEN"/>
 
-<img src="assets/currently.svg" width="100%" alt="Currently: Minecraft mods and plugins, Go services and Telegram bots, MCP servers and agent tooling, React/TypeScript dashboards, ops automation"/>
-
 <img src="assets/sign-projects.svg" width="100%" alt="Projects"/>
 
 <p align="center">

@@ -208,35 +208,6 @@ def card_title(title):
     return f'<text x="28" y="40" class="cz" font-size="13" letter-spacing="5" fill="{IVORY}">{title}</text>'
 
 
-def currently():
-    r, c = STATS['repos'], STATS['contributions']
-    java = r['by_primary'].get('Java', 0)
-    year = dt.date.today().year
-    lines = [
-        ('Minecraft', f'Fabric and NeoForge mods, Paper plugins for private servers · {java} Java repositories'),
-        ('Backends', 'Go services and Telegram bots — subscriptions, payments, admin panels'),
-        ('Agents', 'MCP servers and agent tooling — hosting, DNS, panel and game-API integrations'),
-        ('Web', 'React / TypeScript dashboards and landing pages'),
-        ('Ops', 'Docker, systemd, fleet automation over SSH'),
-    ]
-    body = ''
-    for i, (k, v) in enumerate(lines):
-        y = 104 + i * 21
-        body += diamond(52, y - 4.5, 2.4, RED, '.75')
-        body += (f'<text x="66" y="{y}" class="sans" font-size="13" fill="{GRAY}">'
-                 f'<tspan fill="{IVORY}">{esc(k)}</tspan> — {esc(v)}</text>\n')
-    sub = (f"{r['private']} PRIVATE REPOSITORIES  ·  {fmt(c['this_year'])} CONTRIBUTIONS IN {year}"
-           f"  ·  UPDATED {STATS['refreshed']}")
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" width="880" height="214" viewBox="0 0 880 214">
-{style()}
-<rect x=".5" y=".5" width="879" height="213" rx="6" fill="{BG}" stroke="{LINE}"/>
-{corners(880, 214, 11, 9)}
-{panel_title('CURRENTLY')}
-<text x="440" y="70" text-anchor="middle" class="mono" font-size="10.5" letter-spacing="1.5" fill="{DIM}">{esc(sub)}</text>
-{body}
-</svg>'''
-
-
 def overview():
     r, c = STATS['repos'], STATS['contributions']
     rows = [
@@ -363,7 +334,6 @@ OUT = {
     'card-adaptivejump.svg': card('adaptivejump-neoforge', 'Instant jump rebound on landing —', 'removes the post-jump cooldown', 'JAVA', 'IV', stars=PUB_STARS.get('adaptivejump-neoforge', 0)),
     'card-attack.svg': card('Attack-indicator', 'Configurable floating damage indicators', 'for Paper servers', 'JAVA', 'V', stars=PUB_STARS.get('Attack-indicator', 0)),
     'card-more.svg': card_more(),
-    'currently.svg': currently(),
     'overview.svg': overview(),
     'langs.svg': langs(),
     'activity.svg': activity(),
