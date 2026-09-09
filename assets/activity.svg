@@ -307,7 +307,7 @@
 <rect x="650" y="96" width="11" height="11" rx="2" fill="#15151A" stroke="#232329" stroke-width=".8"/>
 <rect x="650" y="110" width="11" height="11" rx="2" fill="#B0413E" fill-opacity=".5"/>
 <rect x="650" y="124" width="11" height="11" rx="2" fill="#B0413E" fill-opacity="1"/>
-<rect x="650" y="138" width="11" height="11" rx="2" fill="#B0413E" fill-opacity="1"/>
+<rect x="650" y="138" width="11" height="11" rx="2" fill="#B0413E" fill-opacity=".75"/>
 <rect x="650" y="152" width="11" height="11" rx="2" fill="#B0413E" fill-opacity="1"/>
 <rect x="650" y="166" width="11" height="11" rx="2" fill="#B0413E" fill-opacity=".28"/>
 <rect x="650" y="180" width="11" height="11" rx="2" fill="#B0413E" fill-opacity=".5"/>
@@ -390,8 +390,9 @@
 <rect x="804" y="180" width="11" height="11" rx="2" fill="#15151A" stroke="#232329" stroke-width=".8"/>
 <rect x="818" y="96" width="11" height="11" rx="2" fill="#B0413E" fill-opacity=".28"/>
 <rect x="818" y="110" width="11" height="11" rx="2" fill="#B0413E" fill-opacity=".5"/>
-<rect x="818" y="124" width="11" height="11" rx="2" fill="#B0413E" fill-opacity=".75"/>
-<text x="762" y="208" text-anchor="end" class="mono" font-size="9" fill="#55585F">less</text><rect x="770" y="200" width="9" height="9" rx="2" fill="#15151A" stroke="#232329" stroke-width=".8"/><rect x="783" y="200" width="9" height="9" rx="2" fill="#B0413E" fill-opacity=".28"/><rect x="796" y="200" width="9" height="9" rx="2" fill="#B0413E" fill-opacity=".5"/><rect x="809" y="200" width="9" height="9" rx="2" fill="#B0413E" fill-opacity=".75"/><rect x="822" y="200" width="9" height="9" rx="2" fill="#B0413E" fill-opacity="1"/><text x="842" y="208" class="mono" font-size="9" fill="#55585F">more</text><text x="200" y="240" text-anchor="middle" class="mono" font-weight="700" font-size="15" fill="#DBD7CE">1 728</text>
+<rect x="818" y="124" width="11" height="11" rx="2" fill="#B0413E" fill-opacity="1"/>
+<rect x="818" y="138" width="11" height="11" rx="2" fill="#15151A" stroke="#232329" stroke-width=".8"/>
+<text x="762" y="208" text-anchor="end" class="mono" font-size="9" fill="#55585F">less</text><rect x="770" y="200" width="9" height="9" rx="2" fill="#15151A" stroke="#232329" stroke-width=".8"/><rect x="783" y="200" width="9" height="9" rx="2" fill="#B0413E" fill-opacity=".28"/><rect x="796" y="200" width="9" height="9" rx="2" fill="#B0413E" fill-opacity=".5"/><rect x="809" y="200" width="9" height="9" rx="2" fill="#B0413E" fill-opacity=".75"/><rect x="822" y="200" width="9" height="9" rx="2" fill="#B0413E" fill-opacity="1"/><text x="842" y="208" class="mono" font-size="9" fill="#55585F">more</text><text x="200" y="240" text-anchor="middle" class="mono" font-weight="700" font-size="15" fill="#DBD7CE">1 742</text>
 <text x="200" y="257" text-anchor="middle" class="sans" font-size="11.5" fill="#8A8F98">contributions</text>
 <text x="440" y="240" text-anchor="middle" class="mono" font-weight="700" font-size="15" fill="#DBD7CE">3 d</text>
 <text x="440" y="257" text-anchor="middle" class="sans" font-size="11.5" fill="#8A8F98">current streak</text>
