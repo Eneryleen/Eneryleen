@@ -10,7 +10,7 @@
 <path d="M20,129 L11,129 L11,120" stroke="#33333B" stroke-width="1" fill="none"/>
 <path d="M412,129 L421,129 L421,120" stroke="#33333B" stroke-width="1" fill="none"/>
 <text x="28" y="40" class="mono" font-weight="700" font-size="16" fill="#DBD7CE">ai-web-design-codex</text>
-<text x="404" y="39" text-anchor="end" class="mono" font-size="12" fill="#8A8F98">★ 10</text>
+<text x="404" y="39" text-anchor="end" class="mono" font-size="12" fill="#8A8F98">★ 11</text>
 <text x="28" y="68" class="sans" font-size="13" fill="#8A8F98">60 cross-linked guides on web design —</text>
 <text x="28" y="87" class="sans" font-size="13" fill="#8A8F98">for humans and AI agents</text>
 <circle cx="32" cy="111" r="3.5" fill="none" stroke="#55585F" stroke-width="1.2"/>
