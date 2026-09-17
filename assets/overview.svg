@@ -17,11 +17,11 @@
 <text x="28" y="109" class="sans" font-size="13" fill="#8A8F98">Commits</text>
 <line x1="130" y1="105" x2="231.4" y2="105" stroke="#232329" stroke-width="1" stroke-dasharray="1 4"/>
 <text x="349" y="109" text-anchor="end" class="mono" font-size="10.5" fill="#55585F">default branches</text>
-<text x="404" y="109" text-anchor="end" class="mono" font-weight="700" font-size="15" fill="#DBD7CE">1 246</text>
+<text x="404" y="109" text-anchor="end" class="mono" font-weight="700" font-size="15" fill="#DBD7CE">1 261</text>
 <text x="28" y="140" class="sans" font-size="13" fill="#8A8F98">Contributions</text>
 <line x1="130" y1="136" x2="244.6" y2="136" stroke="#232329" stroke-width="1" stroke-dasharray="1 4"/>
 <text x="349" y="140" text-anchor="end" class="mono" font-size="10.5" fill="#55585F">last 12 months</text>
-<text x="404" y="140" text-anchor="end" class="mono" font-weight="700" font-size="15" fill="#DBD7CE">1 944</text>
+<text x="404" y="140" text-anchor="end" class="mono" font-weight="700" font-size="15" fill="#DBD7CE">1 963</text>
 <text x="28" y="171" class="sans" font-size="13" fill="#8A8F98">Stars</text>
 <line x1="130" y1="167" x2="284.8" y2="167" stroke="#232329" stroke-width="1" stroke-dasharray="1 4"/>
 <text x="376" y="171" text-anchor="end" class="mono" font-size="10.5" fill="#55585F">public repos</text>
