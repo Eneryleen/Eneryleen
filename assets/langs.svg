@@ -11,33 +11,33 @@
 <path d="M412,189 L421,189 L421,180" stroke="#33333B" stroke-width="1" fill="none"/>
 <text x="28" y="40" class="cz" font-size="13" letter-spacing="5" fill="#DBD7CE">LANGUAGES</text>
 <text x="404" y="40" text-anchor="end" class="mono" font-size="10" letter-spacing="1" fill="#55585F">BY CODE SIZE</text>
-<rect x="28.0" y="56" width="136.5" height="7" fill="#B0413E" fill-opacity="1"/>
-<rect x="166.0" y="56" width="73.7" height="7" fill="#B0413E" fill-opacity=".8"/>
-<rect x="241.2" y="56" width="66.9" height="7" fill="#B0413E" fill-opacity=".62"/>
-<rect x="309.6" y="56" width="36.9" height="7" fill="#B0413E" fill-opacity=".48"/>
-<rect x="348.0" y="56" width="19.2" height="7" fill="#B0413E" fill-opacity=".36"/>
-<rect x="368.7" y="56" width="12.4" height="7" fill="#B0413E" fill-opacity=".26"/>
-<rect x="382.6" y="56" width="19.9" height="7" fill="#B0413E" fill-opacity=".16"/>
+<rect x="28.0" y="56" width="127.5" height="7" fill="#B0413E" fill-opacity="1"/>
+<rect x="157.0" y="56" width="100.8" height="7" fill="#B0413E" fill-opacity=".8"/>
+<rect x="259.2" y="56" width="59.0" height="7" fill="#B0413E" fill-opacity=".62"/>
+<rect x="319.8" y="56" width="32.7" height="7" fill="#B0413E" fill-opacity=".48"/>
+<rect x="354.0" y="56" width="16.9" height="7" fill="#B0413E" fill-opacity=".36"/>
+<rect x="372.4" y="56" width="10.5" height="7" fill="#B0413E" fill-opacity=".26"/>
+<rect x="384.4" y="56" width="18.1" height="7" fill="#B0413E" fill-opacity=".16"/>
 <rect x="28" y="88" width="7" height="7" fill="#B0413E" fill-opacity="1"/>
 <text x="43" y="96" class="mono" font-size="11.5" fill="#A9AEB8">Java</text>
-<text x="196" y="96" text-anchor="end" class="mono" font-size="11.5" fill="#55585F">36.7%</text>
+<text x="196" y="96" text-anchor="end" class="mono" font-size="11.5" fill="#55585F">34.3%</text>
 <rect x="218" y="88" width="7" height="7" fill="#B0413E" fill-opacity=".8"/>
 <text x="233" y="96" class="mono" font-size="11.5" fill="#A9AEB8">Python</text>
-<text x="386" y="96" text-anchor="end" class="mono" font-size="11.5" fill="#55585F">20.0%</text>
+<text x="386" y="96" text-anchor="end" class="mono" font-size="11.5" fill="#55585F">27.2%</text>
 <rect x="28" y="114" width="7" height="7" fill="#B0413E" fill-opacity=".62"/>
 <text x="43" y="122" class="mono" font-size="11.5" fill="#A9AEB8">Go</text>
-<text x="196" y="122" text-anchor="end" class="mono" font-size="11.5" fill="#55585F">18.2%</text>
+<text x="196" y="122" text-anchor="end" class="mono" font-size="11.5" fill="#55585F">16.1%</text>
 <rect x="218" y="114" width="7" height="7" fill="#B0413E" fill-opacity=".48"/>
 <text x="233" y="122" class="mono" font-size="11.5" fill="#A9AEB8">TypeScript</text>
-<text x="386" y="122" text-anchor="end" class="mono" font-size="11.5" fill="#55585F">10.2%</text>
+<text x="386" y="122" text-anchor="end" class="mono" font-size="11.5" fill="#55585F">9.1%</text>
 <rect x="28" y="140" width="7" height="7" fill="#B0413E" fill-opacity=".36"/>
 <text x="43" y="148" class="mono" font-size="11.5" fill="#A9AEB8">HTML</text>
-<text x="196" y="148" text-anchor="end" class="mono" font-size="11.5" fill="#55585F">5.5%</text>
+<text x="196" y="148" text-anchor="end" class="mono" font-size="11.5" fill="#55585F">4.9%</text>
 <rect x="218" y="140" width="7" height="7" fill="#B0413E" fill-opacity=".26"/>
 <text x="233" y="148" class="mono" font-size="11.5" fill="#A9AEB8">JavaScript</text>
-<text x="386" y="148" text-anchor="end" class="mono" font-size="11.5" fill="#55585F">3.7%</text>
+<text x="386" y="148" text-anchor="end" class="mono" font-size="11.5" fill="#55585F">3.2%</text>
 <rect x="28" y="166" width="7" height="7" fill="#B0413E" fill-opacity=".16"/>
 <text x="43" y="174" class="mono" font-size="11.5" fill="#A9AEB8">Other</text>
-<text x="196" y="174" text-anchor="end" class="mono" font-size="11.5" fill="#55585F">5.7%</text>
+<text x="196" y="174" text-anchor="end" class="mono" font-size="11.5" fill="#55585F">5.2%</text>
 
 </svg>
